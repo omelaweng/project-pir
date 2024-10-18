@@ -1,0 +1,479 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PIR Project</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        .api-key {
+            text-align: center;
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #888;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>PIR Project</h1>
+        <div class="api-key">
+            <p>API Key:
+                Gikhp404crZvkMJyhOOwTl7e8allm12gqLbeogFuv21j9rlK9s6qM16VcDwlkk1VJ9iUisiKDrDTYSkkRAxjq3Eu8nTIfytMXSOQxmMaDWb2XxPUuH1eY3EmRFij3Ohl
+            </p>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>วันที่</th>
+                    <th>คลาสเช้า-บ่าย</th>
+                    <th>จำนวนคนเข้าห้อง</th>
+                </tr>
+            </thead>
+            <tbody id="data-table">
+                <tr>
+                    <td colspan="3">Loading data...</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="footer">
+            <p>© 2024 PIR Project. All Rights Reserved.</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch("http://192.168.137.94:3300/sensor-data")  // Use the full URL for the API
+                .then(response => response.json())
+                .then(data => {
+                    const tableBody = document.getElementById("data-table");
+                    tableBody.innerHTML = "";
+
+                    data.forEach(entry => {
+                        const row = document.createElement("tr");
+                        row.innerHTML = `
+                            <td>${new Date(entry.date).toLocaleDateString()}</td>
+                            <td>${entry.class}</td>
+                            <td>${entry.peopleCount}</td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        });
+    </script>
+</body>
+
+</html> -->
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PIR Project</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        .api-key {
+            text-align: center;
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #888;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>PIR Project</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>วันที่</th>
+                    <th>คลาสเช้า-บ่าย</th>
+                    <th>จำนวนคนเข้าห้อง</th>
+                </tr>
+            </thead>
+            <tbody id="data-table">
+                <tr>
+                    <td colspan="3">Loading data...</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="footer">
+            <p>© 2024 PIR Project. All Rights Reserved.</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const apiKey = 'Gikhp404crZvkMJyhOOwTl7e8allm12gqLbeogFuv21j9rlK9s6qM16VcDwlkk1VJ9iUisiKDrDTYSkkRAxjq3Eu8nTIfytMXSOQxmMaDWb2XxPUuH1eY3EmRFij3Ohl';
+
+            fetch(`http://172.20.10.4:3300/sensor-data?api_key=${apiKey}`)  // Include API key in request
+                .then(response => response.json())
+                .then(data => {
+                    const tableBody = document.getElementById("data-table");
+                    tableBody.innerHTML = "";
+
+                    data.forEach(entry => {
+                        const row = document.createElement("tr");
+                        row.innerHTML = `
+                            <td>${new Date(entry.date).toLocaleDateString()}</td>
+                            <td>${entry.class}</td>
+                            <td>${entry.peopleCount}</td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        });
+    </script>
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PIR Project</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #888;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>PIR Project</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>วันที่</th>
+                    <th>ช่วงเวลา</th>
+                    <th>จำนวนคนเข้าห้อง</th>
+                </tr>
+            </thead>
+            <tbody id="data-table">
+                <tr>
+                    <td colspan="3">Loading data...</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="footer">
+            <p>© 2024 PIR Project. All Rights Reserved.</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const apiKey = 'Gikhp404crZvkMJyhOOwTl7e8allm12gqLbeogFuv21j9rlK9s6qM16VcDwlkk1VJ9iUisiKDrDTYSkkRAxjq3Eu8nTIfytMXSOQxmMaDWb2XxPUuH1eY3EmRFij3Ohl';
+            const url = `http://172.20.10.4:3300/sensor-data?api_key=${apiKey}`;  // Update with your correct URL
+
+            fetch(url)  // Make request to server API
+                .then(response => response.json())
+                .then(data => {
+                    const tableBody = document.getElementById("data-table");
+                    tableBody.innerHTML = ""; // Clear the table before appending data
+
+                    let totalPeopleCount = 0; // Initialize total people count
+
+                    data.forEach(entry => {
+                        const row = document.createElement("tr");
+
+                        totalPeopleCount += entry.peopleCount; // Update total count each time data is fetched
+
+                        row.innerHTML = `
+                            <td>${new Date(entry.createdAt).toLocaleDateString()}</td>
+                            <td>${entry.class}</td>
+                            <td>${totalPeopleCount}</td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        });
+    </script>
+</body>
+
+</html>
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สถานะการเข้าห้อง</title>
+</head>
+
+<body>
+    <h1>สถานะการเข้าห้อง</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>จำนวนการตรวจจับ</th>
+                <th>วัน</th>
+                <th>เวลา</th>
+                <th>ช่วงเวลา</th>
+            </tr>
+        </thead>
+        <tbody id="sensorData"></tbody>
+    </table>
+
+    <script>
+        async function fetchSensorData() {
+            const response = await fetch('http://172.20.10.4:3300/sensor-data');
+            const data = await response.json();
+
+            const tableBody = document.getElementById('sensorData');
+            tableBody.innerHTML = '';
+
+            data.forEach(item => {
+                const row = `<tr>
+                      <td>${item.motionCount}</td>
+                      <td>${item.date}</td>
+                      <td>${item.time}</td>
+                      <td>${item.session === "morning" ? "เช้า" : "บ่าย"}</td>
+                    </tr>`;
+                tableBody.innerHTML += row;
+            });
+        }
+
+        // เรียกใช้งานฟังก์ชัน fetch ทุกๆ 5 วินาที
+        setInterval(fetchSensorData, 5000);
+    </script>
+</body>
+
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Occupancy</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Room Occupancy Data</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Session</th>
+                <th>Motion Count</th>
+            </tr>
+        </thead>
+        <tbody id="data-table">
+            Data from API will be inserted here
+        </tbody>
+    </table>
+
+    <script>
+        // ฟังก์ชันดึงข้อมูลจาก API
+        async function fetchData() {
+            const response = await fetch('/get-motion-data');
+            const data = await response.json();
+
+            const tableBody = document.getElementById('data-table');
+            tableBody.innerHTML = '';  // ล้างข้อมูลเดิมก่อนแสดงผลใหม่
+
+            data.forEach((entry) => {
+                const row = document.createElement('tr');
+
+                const dateCell = document.createElement('td');
+                dateCell.textContent = entry.date;
+                row.appendChild(dateCell);
+
+                const timeCell = document.createElement('td');
+                timeCell.textContent = entry.time;
+                row.appendChild(timeCell);
+
+                const sessionCell = document.createElement('td');
+                sessionCell.textContent = entry.session;
+                row.appendChild(sessionCell);
+
+                const motionCountCell = document.createElement('td');
+                motionCountCell.textContent = entry.motionCount;
+                row.appendChild(motionCountCell);
+
+                tableBody.appendChild(row);
+            });
+        }
+
+        // เรียกใช้ฟังก์ชันเพื่อดึงข้อมูลเมื่อโหลดหน้าเว็บ
+        window.onload = fetchData;
+    </script>
+</body>
+
+</html> -->
